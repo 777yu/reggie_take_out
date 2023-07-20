@@ -23,6 +23,12 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
+    /**
+     * 用户登陆
+     * @param httpServletRequest
+     * @param employee
+     * @return
+     */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
     public R<Employee> login(HttpServletRequest httpServletRequest, @RequestBody Employee employee){
         //1、将页面提交的密码password进行md5加密处理
@@ -55,7 +61,7 @@ public class EmployeeController {
     }
 
     /**
-     *
+     * 退出登陆
      * @param httpServletRequest
      * @return
      */
