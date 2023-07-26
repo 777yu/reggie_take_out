@@ -3,6 +3,7 @@ package com.cui.filter;
 
 
 import com.alibaba.fastjson.JSON;
+import com.cui.common.BaseContext;
 import com.cui.common.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
@@ -16,7 +17,7 @@ import java.io.IOException;
 
 
 /**
- * 定义个人的拦截器
+ * 定义个人的过滤器
  */
 @Slf4j
 @WebFilter(filterName = "LoginCheckFilter",urlPatterns = "/*")
@@ -33,7 +34,7 @@ public class LoginCheckFilter  implements Filter {
         //1、获取本次请求的URI
 
         String uri = httpServletRequest.getRequestURI();
-        log.info("本次的请求路径是：{}",uri);
+//        log.info("本次的请求路径是：{}",uri);
 
         //定义不需要处理的请求路径
 
@@ -58,6 +59,7 @@ public class LoginCheckFilter  implements Filter {
         //4、判断登录状态，如果已登录，则直接放行
         if (httpServletRequest.getSession().getAttribute("employee") != null){
             log.info("用户已经登录 用户id为：{}",httpServletRequest.getSession().getAttribute("employee"));
+            BaseContext.setCurrentId((Long) httpServletRequest.getSession().getAttribute("employee"));
             filterChain.doFilter(httpServletRequest,httpServletResponse);
             return;
         }

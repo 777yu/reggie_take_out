@@ -4,6 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.cui.entity.Employee;
 import org.apache.ibatis.annotations.Mapper;
 
-@Mapper
+//@Mapper
 public interface EmployeeMapper extends BaseMapper<Employee> {
 }
