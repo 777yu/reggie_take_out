@@ -3,6 +3,7 @@ package com.cui.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.cui.common.CustomException;
 import com.cui.common.R;
 import com.cui.entity.Category;
 import com.cui.entity.Dish;
@@ -31,7 +32,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         int count = dishService.count(dishLambdaQueryWrapper);
 
         if (count > 0 ){
-            throw new RuntimeException("当前分页关联了菜品 不能删除");
+            throw new CustomException("当前分页关联了菜品 不能删除");
         }
         LambdaQueryWrapper<Setmeal> setmealLambdaQueryWrapper = new LambdaQueryWrapper<>();
 
@@ -40,7 +41,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
         int count1 = setmealService.count(setmealLambdaQueryWrapper);
 
         if (count1 > 0 ){
-            throw new RuntimeException("当前分页关联了套餐 不能删除");
+            throw new CustomException("当前分页关联了套餐 不能删除");
         }
 
         super.removeById(id);

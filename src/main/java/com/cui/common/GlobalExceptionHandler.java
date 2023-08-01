@@ -2,6 +2,7 @@ package com.cui.common;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -37,6 +38,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CustomException.class)
     public R<String> exceptionHandler(CustomException ex){
 
+        log.info(ex.getMessage());
 
         return R.error(ex.getMessage());
 
