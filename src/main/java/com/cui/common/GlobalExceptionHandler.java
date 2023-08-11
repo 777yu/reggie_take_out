@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
     }
 
     /**
-     *
+     * 处理运行时候的异常
      * @param ex
      * @return
      */
